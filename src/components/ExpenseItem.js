@@ -1,11 +1,11 @@
-import CalendarItem from './CalendarItem';
+import ExpenseDate from './ExpenseDate';
 import './ExpenseItem.scss'
 
 function ExpenseItem(props) {
 
     return (
     <div className="expense-item">
-        <CalendarItem date={props.date}></CalendarItem>
+        <ExpenseDate date={props.date}></ExpenseDate>
         <div className="expense-item__description">
             <h2>{props.title ?? 'no title'}</h2>
             <div className="expense-item__price">{props.amount ?? '0'}</div>
