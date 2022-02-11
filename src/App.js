@@ -28,9 +28,15 @@ function App() {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    console.log('app component')
+    console.log(expense)
+    // this.expenses.push(expense)
+  }
+
   return (
     <div>
-      <NewExpense></NewExpense>
+      <NewExpense onAddExpenseData={addExpenseHandler}></NewExpense>
       <Expenses items={expenses}></Expenses>
     </div>
   );
