@@ -3,23 +3,17 @@ import './ExpenseForm.scss'
 
 
 const ExpenseForm = (props) => {
+    const [newExpense, setNewExpense] = useState(false)
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('')
 
-
-    // const [userInput, setUserInput] = useState({
-    //     enteredTitle: '',
-    //     enteredAmount: '',
-    //     enteredDate: ''
-    // })
+    const onClickNewExpenseHandler = () => {
+        setNewExpense(true)
+    }
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
-
-        // setUserInput( (prevState) => {
-        //     return {...prevState, enteredTitle: event.target.value}
-        // })
     }
 
     const amountChangeHandler = (event) => {
@@ -44,10 +38,16 @@ const ExpenseForm = (props) => {
         setEnteredTitle('')
         setEnteredAmount('')
         setEnteredDate('')
+        setNewExpense(false)
     }
 
-    return (
-        <form onSubmit={submitHandler}>
+    const cancelHandler = () => {
+        setNewExpense(false)
+    }
+
+    if (newExpense) {
+        return (
+             <form onSubmit={submitHandler}>
             <div className="new-expense__controls"> 
                 <div className="new-expense__control">
                     <label>Title</label>
@@ -64,8 +64,16 @@ const ExpenseForm = (props) => {
             </div>
             <div className="new-expense__actions">
                 <button type="submit" >Add</button>
+                <button onClick={cancelHandler}>Cancel</button>
             </div>
         </form>
+        )
+    }
+
+    return (
+        <div>
+            <button onClick={onClickNewExpenseHandler}>Add new expenses</button>
+        </div>
     )
 }
 
